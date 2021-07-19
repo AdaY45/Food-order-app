@@ -1,0 +1,17 @@
+.meal-item {
+    display: flex;
+    justify-content: space-between;
+}
+
+.meal-item {
+    border-bottom: 1px solid #1a638a62;
+}
+
+.name, .description {
+    color: #021c2bf1;
+}
+
+.price {
+    font-size: 18px;
+    color: #1a638a;
+}

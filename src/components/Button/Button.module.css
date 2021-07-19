@@ -1,0 +1,19 @@
+.button {
+    background-color: #399ED3;
+    font-size: 17px;
+    padding: 10px 30px;
+    border: 1px solid #399ED3;
+}
+
+.button.dark {
+    display: block;
+    margin-left: auto;
+    padding: 10px 50px;
+    margin-top: 10px;
+}
+
+.button.light {
+    background-color: white;
+    border: 1px solid #399ED3;
+    color: #399ED3;
+}

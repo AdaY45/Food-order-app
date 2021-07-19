@@ -1,0 +1,23 @@
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #1a638a62;
+}
+
+.price {
+    color: #1a638a;
+}
+
+.change-quantity button{
+    border: 1px solid #1a638a;
+    background-color: white;
+    color: #1a638a;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 5px;
+    padding: 5px 12px;
+}
+
+.quantity {
+    margin-bottom: 10px;
+}
