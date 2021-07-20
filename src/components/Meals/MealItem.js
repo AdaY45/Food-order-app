@@ -9,9 +9,9 @@ const MealItem = props => {
             <div className={styles["meal-info"]}>
                 <h4 className={styles.name}>{props.name}</h4>
                 <p className={styles.description}>{props.description}</p>
-                <h3 className={styles.price}>{props.price}</h3>
+                <h3 className={styles.price}>${props.price}</h3>
             </div>
-            <MealItemForm/>
+            <MealItemForm name={props.name} price={props.price} setCart={props.setCart}/>
         </div>
     );
 };

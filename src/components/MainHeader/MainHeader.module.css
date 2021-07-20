@@ -3,6 +3,10 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 0 200px;
+    position: fixed;
+    top:0;
+    width: 100%;
+    z-index: 1;
 }
 
 .app-name {

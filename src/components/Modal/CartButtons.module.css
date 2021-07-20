@@ -1,0 +1,8 @@
+.buttons *{
+    margin-right: 10px;
+}
+
+.buttons-block {
+    display: flex;
+    justify-content: center;
+}

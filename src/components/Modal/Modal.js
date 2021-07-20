@@ -1,34 +1,31 @@
+import React from "react";
+import reactDom from "react-dom";
 import CartItem from "../Cart/CartItem";
-import Button from "../Button/Button";
+import Total from "./Total";
+import CartButtons from "./CartButtons";
+
 import styles from "./Modal.module.css";
 
 const Modal = (props) => {
-  const closeHandler = () => {
-    props.setIsValid(false);
-  };
+   const totalPrice = props.cart.reduce((acc, curr) => {
+    return (acc + +curr.price*curr.quantity);
+   }, 0);
 
-  const total = 0;
-
-  return (
+  return reactDom.createPortal(
     <div className={styles.modal}>
       <div className={styles["modal-content"]}>
-        <CartItem
-          name={props.name}
-          price={props.price}
-          quantity={props.quantity}
-        />
-        <div className={styles.total}>
-          <h3>Total Amount</h3>
-          <h3 className={styles.price}>${total}</h3>
-        </div>
-        <div className={styles.buttons}>
-          <div className={styles["buttons-block"]}>
-            <Button onClick={closeHandler} color="light">Close</Button>
-            <Button type="submit">Order</Button>
-          </div>
-        </div>
+        {props.cart.map((el) => (
+          <CartItem
+            key={el.id}
+            cartMeal={el}
+            setCart={props.setCart}
+          />
+        ))}
+        <Total total={Math.floor(totalPrice * 100) / 100}/>
+        <CartButtons />
       </div>
-    </div>
+    </div>,
+    document.getElementById("modal")
   );
 };
 

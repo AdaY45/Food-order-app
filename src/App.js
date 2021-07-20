@@ -1,24 +1,60 @@
-import React, {useState} from 'react';
-import MainHeader from './components/MainHeader/MainHeader';
-import Meals from './components/Meals/Meals';
-import Modal from './components/Modal/Modal';
+import React, { useState, useContext } from "react";
+import reactDom from "react-dom";
+import MainHeader from "./components/MainHeader/MainHeader";
+import Meals from "./components/Meals/Meals";
+import Modal from "./components/Modal/Modal";
+import CartContext from "./components/store/cart-context";
+import HeroSection from "./HeroSection/HeroSection";
 
-import styles from './App.module.css';
+import "./App.css";
+
+const DUMMY_MEALS = [
+  {
+    id: "m1",
+    name: "Sushi",
+    description: "Finest fish and veggies",
+    price: 22.99,
+  },
+  {
+    id: "m2",
+    name: "Schnitzel",
+    description: "A german specialty!",
+    price: 16.5,
+  },
+  {
+    id: "m3",
+    name: "Barbecue Burger",
+    description: "American, raw, meaty",
+    price: 12.99,
+  },
+  {
+    id: "m4",
+    name: "Green Bowl",
+    description: "Healthy...and green...",
+    price: 18.99,
+  },
+];
 
 function App() {
-  const [isValid, setIsValid] = useState(false);
+  const ctx = useContext(CartContext);
+  const [mealsList, setMealsList] = useState(DUMMY_MEALS);
+  const [cart, setCart] = useState([]);
+
+  console.log(cart);
 
   return (
     <React.Fragment>
-      {isValid && <Modal setIsValid={setIsValid} name="Sushi" price={343} quantity={1}/>}
-      <MainHeader setIsValid={setIsValid}/>
-      <div className={styles["hero-section"]}>
-        <div className={styles["text-block"]}>
-            <h2 className={styles["text-header"]}>Best restaurant in the city</h2>
-            <p className={styles["text-p"]}>Choose your favourite meal from our menu and enjoy delicious lunch or dinner at home</p>
-        </div>
-      </div>
-      <Meals/>
+      {ctx.isModal &&
+        reactDom.createPortal(
+          <Modal
+            cart={cart}
+            setCart={setCart}
+          />,
+          document.getElementById("modal")
+        )}
+      <MainHeader cart={cart}/>
+      <HeroSection/>
+      <Meals meals={mealsList} cart={cart} setCart={setCart} />
     </React.Fragment>
   );
 }
