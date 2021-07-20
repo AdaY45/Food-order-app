@@ -7,7 +7,7 @@ const MainHeader = props => {
     return (
         <header>
             <h2 className={styles['app-name']}>ReactMeals</h2>
-            <HeaderCartButton quantity={0} setIsValid={props.setIsValid}/>
+            <HeaderCartButton quantity={props.cart.length}/>
         </header>
     );
 };

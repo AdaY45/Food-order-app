@@ -1,7 +1,7 @@
 .modal {
     position: fixed;
-    z-index: 1;
-    padding-top: 150px;
+    z-index: 2;
+    padding: 150px 0 10px 0;
     left: 0;
     top: 0;
     width: 100%;
@@ -16,18 +16,4 @@
     border-radius: 40px;
     padding: 10px 30px 30px;
     margin: 0 300px;
-}
-
-.total {
-    display: flex;
-    justify-content: space-between;
-}
-
-.buttons *{
-    margin-right: 10px;
-}
-
-.buttons-block {
-    display: flex;
-    justify-content: center;
 }
