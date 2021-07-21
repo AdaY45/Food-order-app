@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
-import { CartContextProvider } from "./components/store/cart-context";
+import { ModalContextProvider } from "./store/modal-context";
 
 ReactDOM.render(
-  <CartContextProvider>
+  <ModalContextProvider>
     <App />
-  </CartContextProvider>,
+  </ModalContextProvider>,
   document.getElementById("root")
 );
 
