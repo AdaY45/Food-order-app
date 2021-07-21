@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import reactDom from "react-dom";
 import MainHeader from "./components/MainHeader/MainHeader";
 import Meals from "./components/Meals/Meals";
-import Modal from "./components/Modal/Modal";
-import CartContext from "./components/store/cart-context";
+import Modal from "./components/Cart/Cart";
+import ModalContext from "./store/modal-context";
 import HeroSection from "./HeroSection/HeroSection";
+import CartContextProvider from "./store/CartContextProvider";
 
 import "./App.css";
 
@@ -36,26 +36,19 @@ const DUMMY_MEALS = [
 ];
 
 function App() {
-  const ctx = useContext(CartContext);
-  const [mealsList, setMealsList] = useState(DUMMY_MEALS);
-  const [cart, setCart] = useState([]);
-
-  console.log(cart);
-
+  const ctx = useContext(ModalContext);
+  const mealsList = DUMMY_MEALS;
   return (
-    <React.Fragment>
+    <CartContextProvider>
+      {/* better do with props */}
       {ctx.isModal &&
-        reactDom.createPortal(
-          <Modal
-            cart={cart}
-            setCart={setCart}
-          />,
-          document.getElementById("modal")
-        )}
-      <MainHeader cart={cart}/>
-      <HeroSection/>
-      <Meals meals={mealsList} cart={cart} setCart={setCart} />
-    </React.Fragment>
+          <Modal />}
+      <MainHeader />
+      <main>
+        <HeroSection />
+        <Meals meals={mealsList} />
+      </main>
+    </CartContextProvider>
   );
 }
 

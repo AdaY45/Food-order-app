@@ -1,64 +1,48 @@
-import React, { useRef } from "react";
-import Button from "../Button/Button";
+import React, { useRef, useState } from "react";
+import Button from "../UI/Button/Button";
+import Input from "../UI/Input/Input";
 import styles from "./MealItemForm.module.css";
 
 const MealItemForm = (props) => {
   const amountInputRef = useRef();
-  const addRef = useRef();
-
-  const isInCart = (prev) => {
-    for(let el of prev) {
-      if (el.name === props.name) {
-        return true;
-      }
-    }
-
-    return false;
-  };
+  const [isValid, setIsValid] = useState(true);
 
   const addMealHandler = (event) => {
     event.preventDefault();
     const enteredAmount = amountInputRef.current.value;
+    const enteredAmountNumber = +enteredAmount;
 
-    //addRef.current.active();
-
-    if (+enteredAmount < 0) {
-      //Error
+    if (
+      enteredAmount.trim().length === 0 ||
+      enteredAmountNumber < 1 ||
+      enteredAmountNumber > 5
+    ) {
+      setIsValid(false);
+      return;
     }
-
-    props.setCart((prevCart) => {
-      if (prevCart.length === 0 || !isInCart(prevCart)) {
-        return [
-          ...prevCart,
-          {
-            id: Math.random().toString(),
-            name: props.name,
-            price: props.price,
-            quantity: enteredAmount,
-          },
-        ];
-      } else {
-        prevCart.forEach((el) => {
-          if (el.name === props.name) {
-            el.quantity = +el.quantity + +enteredAmount;
-          }
-        });
-        return prevCart;
-      }
-    });
+    props.onAddToCart(enteredAmountNumber);
     amountInputRef.current.value = 1;
   };
 
   return (
     <React.Fragment>
       <form onSubmit={addMealHandler} className={styles["meals-form"]}>
-        <div className={styles["form-control"]}>
-          <label>Amount</label>
-          <input ref={amountInputRef} type="number" defaultValue={1} />
-        </div>
-        <Button ref={addRef} type="submit" color="dark">
+        <Input
+          ref={amountInputRef}
+          label="Amount"
+          input={{
+            id: "amount_" + props.id,
+            type: "number",
+            min: "1",
+            max: "5",
+            step: "1",
+            defaultValue: "1",
+          }}
+        />
+        <Button type="submit" color="dark">
           +Add
         </Button>
+        {!isValid && <p>Please enter a valid amount (1-5).</p>}
       </form>
     </React.Fragment>
   );

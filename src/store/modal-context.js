@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
-const CartContext = React.createContext({
+const ModalContext = React.createContext({
   isModal: false,
   onOpen: () => {},
   onClose: () => {},
 });
 
-export const CartContextProvider = (props) => {
+export const ModalContextProvider = (props) => {
   const [isModal, setIsModal] = useState(false);
 
   const openHandler = () => {
@@ -18,7 +18,7 @@ export const CartContextProvider = (props) => {
   };
 
   return (
-    <CartContext.Provider
+    <ModalContext.Provider
       value={{
         isModal: isModal,
         onOpen: openHandler,
@@ -26,8 +26,8 @@ export const CartContextProvider = (props) => {
       }}
     >
       {props.children}
-    </CartContext.Provider>
+    </ModalContext.Provider>
   );
 };
 
-export default CartContext;
+export default ModalContext;

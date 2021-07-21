@@ -1,11 +1,11 @@
 import React, {useContext} from "react";
-import CartContext, { CartContextProvider } from "../store/cart-context";
-import Button from "../Button/Button";
+import ModalContext from "../../store/modal-context";
+import Button from "../UI/Button/Button";
 
 import styles from "./CartButtons.module.css";
 
 const CartButtons = () => {
-  const ctx = useContext(CartContext);
+  const ctx = useContext(ModalContext);
 
   return (
     <div className={styles.buttons}>
