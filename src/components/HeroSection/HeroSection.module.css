@@ -1,6 +1,6 @@
 .hero-section {
     position: relative;
-    background-image: url('../imgs/main.jpg');
+    background-image: url('../../imgs/main.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     height: 75vh;

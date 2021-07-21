@@ -3,7 +3,7 @@ import MainHeader from "./components/MainHeader/MainHeader";
 import Meals from "./components/Meals/Meals";
 import Modal from "./components/Cart/Cart";
 import ModalContext from "./store/modal-context";
-import HeroSection from "./HeroSection/HeroSection";
+import HeroSection from "./components/HeroSection/HeroSection";
 import CartContextProvider from "./store/CartContextProvider";
 
 import "./App.css";
