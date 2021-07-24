@@ -6,6 +6,7 @@ const Button = (props) => {
       type={props.type || "button"}
       className={styles.button + " " + styles[props.color]}
       onClick={props.onClick}
+      disabled={!props.formIsValid && props.btnType === 'confirm'}
     >
       {props.children}
     </button>

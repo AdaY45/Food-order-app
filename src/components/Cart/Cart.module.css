@@ -1,7 +1,6 @@
-.modal {
+.modal-background {
     position: fixed;
     z-index: 2;
-    padding: 150px 0 10px 0;
     left: 0;
     top: 0;
     width: 100%;
@@ -9,6 +8,14 @@
     overflow: auto;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-background .modal {
+    margin: 150px 10px;
+}
+
+.modal-background .modal-checkout {
+    margin: 30px 10px;
 }
 
 .modal-content {
