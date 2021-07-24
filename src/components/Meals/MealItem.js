@@ -22,7 +22,7 @@ const MealItem = props => {
                 <p className={styles.description}>{props.description}</p>
                 <h3 className={styles.price}>${props.price}</h3>
             </div>
-            <MealItemForm onAddToCart={addItemToCartHandler} id={props.key} name={props.name} price={props.price}/>
+            <MealItemForm onAddToCart={addItemToCartHandler} id={props.id} name={props.name} price={props.price}/>
         </div>
     );
 };

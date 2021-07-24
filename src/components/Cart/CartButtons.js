@@ -1,10 +1,10 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import ModalContext from "../../store/modal-context";
 import Button from "../UI/Button/Button";
 
 import styles from "./CartButtons.module.css";
 
-const CartButtons = () => {
+const CartButtons = (props) => {
   const ctx = useContext(ModalContext);
 
   return (
@@ -13,7 +13,16 @@ const CartButtons = () => {
         <Button onClick={ctx.onClose} color="light">
           Close
         </Button>
-        <Button type="submit">Order</Button>
+        {props.hasCartItems && !props.showConfirm && (
+          <Button type="submit" onClick={props.orderHandler}>
+            Order
+          </Button>
+        )}
+        {props.showConfirm && (
+          <Button formIsValid={props.formIsValid} btnType={props.btnType || ''} type="submit" >
+          Confirm
+        </Button>
+        )}
       </div>
     </div>
   );

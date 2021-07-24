@@ -6,12 +6,15 @@ import CartButtons from "./CartButtons";
 import Button from "../UI/Button/Button";
 import CartContext from "../../store/cart-context";
 import ModalContext from "../../store/modal-context";
+import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
 import styles from "./Cart.module.css";
 
-const Cart = () => {
+const Cart = (props) => {
   const cartCtx = useContext(CartContext);
   const ctx = useContext(ModalContext);
+  const [showCheckout, setShowCheckout] = useState(false);
+  const [orders, setOrders] = useState([]);
   const hasCartItems = cartCtx.items.length > 0;
   const totalPrice = cartCtx.items.reduce((acc, curr) => {
     return acc + +curr.price * curr.amount;
@@ -22,32 +25,50 @@ const Cart = () => {
   };
 
   const addItemHandler = (item) => {
-    cartCtx.addItem({...item, amount: 1});
+    cartCtx.addItem({ ...item, amount: 1 });
   };
 
+  const orderHandler = () => {
+    setShowCheckout(true);
+  };
+
+  const orderAddHandler = order => {
+    setOrders((prev) => prev.concat(order));
+  };
+
+  const modalStyles = showCheckout ? styles["modal-checkout"] : styles.modal;
+
   return reactDom.createPortal(
-    <div className={styles.modal}>
-      <div className={styles["modal-content"]}>
-        <div className={styles.container}>
-          {cartCtx.items.map((el) => (
-            <CartItem
-              key={el.id}
-              cartMeal={el}
-              onRemove={removeItemHandler.bind(null, el.id)}
-              onAdd={addItemHandler.bind(null, el)}
-            />
-          ))}
-        </div>
-        <Total total={Math.floor(totalPrice * 100) / 100} />
-        {/* {hasCartItems && <CartButtons />} */}
-        {/* <CartButtons /> */}
-        <div className={styles.buttons}>
-          <div className={styles["buttons-block"]}>
-            <Button onClick={ctx.onClose} color="light">
-              Close
-            </Button>
-            {hasCartItems && <Button type="submit">Order</Button>}
+    <div className={styles["modal-background"]}>
+      <div className={modalStyles}>
+        <div className={styles["modal-content"]}>
+          <div className={styles.container}>
+            {cartCtx.items.map((el) => (
+              <CartItem
+                key={el.id}
+                cartMeal={el}
+                onRemove={removeItemHandler.bind(null, el.id)}
+                onAdd={addItemHandler.bind(null, el)}
+              />
+            ))}
           </div>
+          <Total total={Math.floor(totalPrice * 100) / 100} />
+          {!showCheckout ? (
+            <CartButtons
+              hasCartItems={hasCartItems}
+              orderHandler={orderHandler}
+              showConfirm={showCheckout}
+            />
+          ) : (
+            <CheckoutForm
+              hasCartItems={hasCartItems}
+              showConfirm={showCheckout}
+              onAddOrder={orderAddHandler}
+              orderId={orders.length+1}
+              setShowCheckout={setShowCheckout}
+              onSuccessOrder={props.onSuccessOrder}
+            />
+          )}
         </div>
       </div>
     </div>,
