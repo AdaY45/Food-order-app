@@ -3,16 +3,13 @@
   font-family: 'Roboto Slab', serif;
 }
 
-.success {
-  padding-top: 100px;
-  margin-bottom: 0;
-  background-color: rgb(126, 248, 147);
+.error-message {
+  color: black;
+  background-color: #ff4b4b46;
   text-align: center;
+  padding: 30px;
 }
 
-.success p {
-  color: #000e16;
-  font-weight: 600;
-  margin: 0;
-  padding: 20px 0 30px;
+.error-message.meals {
+  margin: 100px 30px;
 }

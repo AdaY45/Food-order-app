@@ -6,35 +6,10 @@ import ModalContext from "./store/modal-context";
 import HeroSection from "./components/HeroSection/HeroSection";
 import CartContextProvider from "./store/CartContextProvider";
 import useHttp from "./hooks/use-http";
+import Loader from "./components/UI/Loader/Loader";
 
 import "./App.css";
-
-// const DUMMY_MEALS = [
-//   {
-//     id: "m1",
-//     name: "Sushi",
-//     description: "Finest fish and veggies",
-//     price: 22.99,
-//   },
-//   {
-//     id: "m2",
-//     name: "Schnitzel",
-//     description: "A german specialty!",
-//     price: 16.5,
-//   },
-//   {
-//     id: "m3",
-//     name: "Barbecue Burger",
-//     description: "American, raw, meaty",
-//     price: 12.99,
-//   },
-//   {
-//     id: "m4",
-//     name: "Green Bowl",
-//     description: "Healthy...and green...",
-//     price: 18.99,
-//   },
-// ];
+import SuccessfullyOrdered from "./components/UI/NotificationMessages/SuccessfullyOrdered";
 
 function App() {
   const ctx = useContext(ModalContext);
@@ -68,17 +43,18 @@ function App() {
 
   return (
     <CartContextProvider>
-      {/* better do with props */}
+      {/* better to do with props */}
       {ctx.isModal && <Modal onSuccessOrder={setIsSuccessfullyOrdered} />}
       <MainHeader />
       <main>
+        {isLoading && <Loader/>}
         {isSuccessfullyOrdered && (
-          <div className="success">
-            <p>Successfully ordered!</p>
-          </div>
+          <SuccessfullyOrdered
+            setIsSuccessfullyOrdered={setIsSuccessfullyOrdered}
+          />
         )}
         <HeroSection />
-        <Meals meals={mealsList} />
+        {error ? <p className="error-message meals">{error}</p> : <Meals meals={mealsList} />}
       </main>
     </CartContextProvider>
   );

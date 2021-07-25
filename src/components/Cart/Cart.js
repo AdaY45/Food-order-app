@@ -3,16 +3,13 @@ import reactDom from "react-dom";
 import CartItem from "./CartItem";
 import Total from "./Total";
 import CartButtons from "./CartButtons";
-import Button from "../UI/Button/Button";
 import CartContext from "../../store/cart-context";
-import ModalContext from "../../store/modal-context";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
 
 import styles from "./Cart.module.css";
 
 const Cart = (props) => {
   const cartCtx = useContext(CartContext);
-  const ctx = useContext(ModalContext);
   const [showCheckout, setShowCheckout] = useState(false);
   const [orders, setOrders] = useState([]);
   const hasCartItems = cartCtx.items.length > 0;
