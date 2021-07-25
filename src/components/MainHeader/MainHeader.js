@@ -7,7 +7,7 @@ const MainHeader = (props) => {
   return (
     <React.Fragment>
       <header>
-        <h2 className={styles["app-name"]}>ReactMeals</h2>
+        <h2 className={styles["app-name"]}>Tasteful</h2>
         <HeaderCartButton />
       </header>
     </React.Fragment>

@@ -20,7 +20,6 @@ const CheckoutForm = (props) => {
     hasErrors: firstNameHasErrors,
     valueChangeHandler: firstNameChangeHandler,
     inputBlurHandler: firstNameBlurHandler,
-    reset: resetFirstName,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -29,7 +28,6 @@ const CheckoutForm = (props) => {
     hasErrors: lastNameHasErrors,
     valueChangeHandler: lastNameChangeHandler,
     inputBlurHandler: lastNameBlurHandler,
-    reset: resetLastName,
   } = useInput((value) => value.trim() !== "");
 
   const {
@@ -38,7 +36,6 @@ const CheckoutForm = (props) => {
     hasErrors: addressHasErrors,
     valueChangeHandler: addressChangeHandler,
     inputBlurHandler: addressBlurHandler,
-    reset: resetAddress,
   } = useInput((value) => value.trim() !== "");
 
   let formIsValid = false;
@@ -62,6 +59,7 @@ const CheckoutForm = (props) => {
     }
 
     const pay = payment.current.value;
+    const cart = cartCtx.items;
 
     sendOrderRequest(
       {
@@ -70,15 +68,17 @@ const CheckoutForm = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: { firstName, lastName, address, pay },
+        body: { firstName, lastName, address, paymentMethod: pay, order: cart },
       },
-      createOrder(firstName, lastName, address, pay)
+      createOrder(firstName, lastName, address, pay, cart)
     );
 
-    cartCtx.removeAllItems();
-    props.setShowCheckout(false);
-    modalCtx.onClose();
-    props.onSuccessOrder(true);
+    if (error === null) {
+      cartCtx.removeAllItems();
+      props.setShowCheckout(false);
+      modalCtx.onClose();
+      props.onSuccessOrder(true);
+    }
   };
 
   const firstNameInputStyles = firstNameHasErrors ? "invalid" : "";
@@ -90,6 +90,7 @@ const CheckoutForm = (props) => {
   return (
     <div className={styles.background}>
       {isLoading && <Loader />}
+      {error && <p className="error-message checkout">{error}</p>}
       <form onSubmit={onCheckoutSubmit} className={styles["checkout-form"]}>
         <div className={styles[firstNameInputStyles]}>
           <label htmlFor="firstName">First Name</label>
