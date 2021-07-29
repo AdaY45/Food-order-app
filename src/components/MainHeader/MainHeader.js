@@ -3,7 +3,7 @@ import HeaderCartButton from "../HeaderCartButton/HeaderCartButton";
 
 import styles from "./MainHeader.module.css";
 
-const MainHeader = (props) => {
+const MainHeader = () => {
   return (
     <React.Fragment>
       <header>

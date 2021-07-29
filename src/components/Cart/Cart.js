@@ -1,28 +1,30 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import reactDom from "react-dom";
+import { useSelector, useDispatch } from "react-redux";
 import CartItem from "./CartItem";
 import Total from "./Total";
 import CartButtons from "./CartButtons";
-import CartContext from "../../store/cart-context";
 import CheckoutForm from "../CheckoutForm/CheckoutForm";
+import { cartActions } from "../../store/cart-slice";
 
 import styles from "./Cart.module.css";
 
 const Cart = (props) => {
-  const cartCtx = useContext(CartContext);
+  const cartItems = useSelector(state => state.cart.items);
+  const dispatch = useDispatch();
   const [showCheckout, setShowCheckout] = useState(false);
   const [orders, setOrders] = useState([]);
-  const hasCartItems = cartCtx.items.length > 0;
-  const totalPrice = cartCtx.items.reduce((acc, curr) => {
+  const hasCartItems = cartItems.length > 0;
+  const totalPrice = cartItems.reduce((acc, curr) => {
     return acc + +curr.price * curr.amount;
   }, 0);
 
   const removeItemHandler = (id) => {
-    cartCtx.removeItem(id);
+    dispatch(cartActions.removeItem(id));
   };
 
   const addItemHandler = (item) => {
-    cartCtx.addItem({ ...item, amount: 1 });
+    dispatch(cartActions.addItem({ ...item, amount: 1 }));
   };
 
   const orderHandler = () => {
@@ -40,7 +42,7 @@ const Cart = (props) => {
       <div className={modalStyles}>
         <div className={styles["modal-content"]}>
           <div className={styles.container}>
-            {cartCtx.items.map((el) => (
+            {cartItems.map((el) => (
               <CartItem
                 key={el.id}
                 cartMeal={el}

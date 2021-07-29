@@ -1,16 +1,17 @@
-import React, { useRef, useContext } from "react";
+import React, { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import CartButtons from "../Cart/CartButtons";
 import useInput from "../../hooks/use-input";
 import useHttp from "../../hooks/use-http";
 import Loader from "../UI/Loader/Loader";
-import CartContext from "../../store/cart-context";
-import ModalContext from "../../store/modal-context";
+import { cartActions } from "../../store/cart-slice";
+import { uiActions } from "../../store/ui-slice";
 
 import styles from "./CheckoutForm.module.css";
 
 const CheckoutForm = (props) => {
-  const cartCtx = useContext(CartContext);
-  const modalCtx = useContext(ModalContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.items);
   const payment = useRef();
   const { isLoading, error, sendRequest: sendOrderRequest } = useHttp();
 
@@ -59,7 +60,6 @@ const CheckoutForm = (props) => {
     }
 
     const pay = payment.current.value;
-    const cart = cartCtx.items;
 
     sendOrderRequest(
       {
@@ -68,15 +68,15 @@ const CheckoutForm = (props) => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: { firstName, lastName, address, paymentMethod: pay, order: cart },
+        body: { firstName, lastName, address, paymentMethod: pay, order: cartItems },
       },
-      createOrder(firstName, lastName, address, pay, cart)
+      createOrder(firstName, lastName, address, pay, cartItems)
     );
 
     if (error === null) {
-      cartCtx.removeAllItems();
+      dispatch(cartActions.removeAllItems());
       props.setShowCheckout(false);
-      modalCtx.onClose();
+      dispatch(uiActions.onClose());
       props.onSuccessOrder(true);
     }
   };

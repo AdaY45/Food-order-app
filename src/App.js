@@ -1,18 +1,18 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import MainHeader from "./components/MainHeader/MainHeader";
 import Meals from "./components/Meals/Meals";
 import Modal from "./components/Cart/Cart";
-import ModalContext from "./store/modal-context";
 import HeroSection from "./components/HeroSection/HeroSection";
-import CartContextProvider from "./store/CartContextProvider";
 import useHttp from "./hooks/use-http";
 import Loader from "./components/UI/Loader/Loader";
 
 import "./App.css";
 import SuccessfullyOrdered from "./components/UI/NotificationMessages/SuccessfullyOrdered";
+import { Fragment } from "react";
 
 function App() {
-  const ctx = useContext(ModalContext);
+  const isModalOpen = useSelector((state) => state.ui.isModalOpen);
   const { isLoading, error, sendRequest: fetchMeals } = useHttp();
   const [mealsList, setMealsList] = useState([]);
   const [isSuccessfullyOrdered, setIsSuccessfullyOrdered] = useState(false);
@@ -39,24 +39,27 @@ function App() {
       },
       setMeals
     );
-  }, []);
+  }, [fetchMeals]);
 
   return (
-    <CartContextProvider>
-      {/* better to do with props */}
-      {ctx.isModal && <Modal onSuccessOrder={setIsSuccessfullyOrdered} />}
+    <Fragment>
+      {isModalOpen && <Modal onSuccessOrder={setIsSuccessfullyOrdered} />}
       <MainHeader />
       <main>
-        {isLoading && <Loader/>}
+        {isLoading && <Loader />}
         {isSuccessfullyOrdered && (
           <SuccessfullyOrdered
             setIsSuccessfullyOrdered={setIsSuccessfullyOrdered}
           />
         )}
         <HeroSection />
-        {error ? <p className="error-message meals">{error}</p> : <Meals meals={mealsList} />}
+        {error ? (
+          <p className="error-message meals">{error}</p>
+        ) : (
+          <Meals meals={mealsList} />
+        )}
       </main>
-    </CartContextProvider>
+    </Fragment>
   );
 }
 

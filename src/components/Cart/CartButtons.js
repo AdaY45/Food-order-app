@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
-import ModalContext from "../../store/modal-context";
+import React from "react";
+import { useDispatch } from "react-redux";
 import Button from "../UI/Button/Button";
+import { uiActions } from "../../store/ui-slice";
 
 import styles from "./CartButtons.module.css";
 
 const CartButtons = (props) => {
-  const ctx = useContext(ModalContext);
+  const dispatch = useDispatch();
+
+  const closeCartHandler = () => {
+    dispatch(uiActions.onClose());
+  }
 
   return (
     <div className={styles.buttons}>
       <div className={styles["buttons-block"]}>
-        <Button onClick={ctx.onClose} color="light">
+        <Button onClick={closeCartHandler} color="light">
           Close
         </Button>
         {props.hasCartItems && !props.showConfirm && (
