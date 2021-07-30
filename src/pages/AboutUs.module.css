@@ -1,0 +1,26 @@
+.about-us {
+    padding: 0 200px;
+    margin-top: 140px;
+}
+
+.img{
+    background-image: url("../imgs/about-us.jpg");
+    width: 100%;
+    height: 300px;
+    background-position: top;
+    background-size: cover;
+}
+
+.text {
+    color: #021c2b;
+}
+
+.text h2 {
+    font-size: 30px;
+    text-align: center;
+}
+
+.text p {
+    font-size: 17px;
+    line-height: 28px;
+}

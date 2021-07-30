@@ -1,0 +1,11 @@
+.error-message {
+    color: black;
+    background-color: #ff4b4b46;
+    text-align: center;
+    padding: 30px;
+  }
+  
+  .error-message.meals {
+    margin: 100px 30px;
+  }
+  
