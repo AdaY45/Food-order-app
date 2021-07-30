@@ -13,3 +13,26 @@ header {
     font-size: 30px;
     color: white;
 }
+
+.logo {
+    text-decoration: none;
+}
+
+.navbar ul{
+    list-style: none;
+    display: flex;
+}
+
+.navbar li {
+    margin: auto 20px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+}
+
+.active {
+    color: #1a638a;
+}

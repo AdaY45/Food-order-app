@@ -1,0 +1,15 @@
+.contacts {
+    color: black;
+    display: block;
+    margin-top: 300px;
+}
+
+.contacts ul {
+    list-style: none;
+    text-align: center;
+}
+
+.contacts li {
+    margin: 20px;
+    font-size: 19px;
+}

@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MealItemForm from "./MealItemForm";
 import { cartActions } from "../../store/cart-slice";
 
@@ -7,6 +7,9 @@ import styles from "./MealItem.module.css";
 
 const MealItem = (props) => {
   const dispatch = useDispatch();
+  const cartItems = useSelector(state => state.cart.items);
+  
+  
   
   const addItemToCartHandler = (amount) => {
     dispatch(
@@ -17,6 +20,7 @@ const MealItem = (props) => {
         price: props.price,
       })
     );
+    console.log(cartItems);
   };
 
   return (
