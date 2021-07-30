@@ -4,4 +4,4 @@ The app allows to chose meals from menu and make orders by signing and sending t
 
 # Techologies
 
-The food ordering app was written with the help of the programming language JavaScript and its framework React.js. Also were used Redux, Redux Toolkit, CSS.
+The food ordering app was written with the help of the programming language JavaScript and its framework React.js. Also were used Redux, Redux Toolkit, third party package React Router and CSS.
