@@ -1,6 +1,6 @@
 # Food Ordering App
 
-The app allows to chose meals from menu and make orders by signing and sending the form.
+The app allows to choose meals from menu and make orders by signing and sending the form.
 
 # Techologies
 
