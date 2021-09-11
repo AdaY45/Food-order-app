@@ -13,9 +13,9 @@ function App() {
     <Layout>
       <Switch>
         <Route path="/" exact>
-          <Redirect to="/food-order-app" />
+          <Redirect to="/Food-order-app/" />
         </Route>
-        <Route path="/food-order-app">
+        <Route path="/Food-order-app/">
           <Main />
         </Route>
         <Route path="/contacts">

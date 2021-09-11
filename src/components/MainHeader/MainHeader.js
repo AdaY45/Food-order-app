@@ -8,7 +8,7 @@ const MainHeader = () => {
   return (
     <React.Fragment>
       <header>
-        <Link to="/meals" className={styles.logo}>
+        <Link to="/Food-order-app/" className={styles.logo}>
           <h2 className={styles["app-name"]}>Tasteful</h2>
         </Link>
         <nav className={styles.navbar}>
