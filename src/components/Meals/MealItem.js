@@ -7,9 +7,6 @@ import styles from "./MealItem.module.css";
 
 const MealItem = (props) => {
   const dispatch = useDispatch();
-  const cartItems = useSelector(state => state.cart.items);
-  
-  
   
   const addItemToCartHandler = (amount) => {
     dispatch(
@@ -20,7 +17,6 @@ const MealItem = (props) => {
         price: props.price,
       })
     );
-    console.log(cartItems);
   };
 
   return (

@@ -1,3 +1,8 @@
 .meals-form {
     margin: auto 0;
 }
+
+.error {
+    color: #910404f1;
+    text-align: center;
+}

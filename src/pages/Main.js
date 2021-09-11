@@ -17,6 +17,7 @@ function Main() {
   const { sendRequest: fetchCart } = useHttp();
   const { sendRequest: sendCart } = useHttp();
   const [mealsList, setMealsList] = useState([]);
+  let componentMounted = true;
 
   useEffect(() => {
     const setMeals = (meals) => {
@@ -38,8 +39,12 @@ function Main() {
       {
         url: "https://react-http-e03c3-default-rtdb.firebaseio.com/meals.json",
       },
-      setMeals
+      setMeals,
+      componentMounted
     );
+    return () => {
+      componentMounted = false;
+    }
   }, [fetchMeals]);
 
   useEffect(() => {

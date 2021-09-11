@@ -1,6 +1,7 @@
 .form-control {
     margin-bottom: 10px;
     color: #021c2bf1;
+    text-align: right;
 }
 
 .form-control label {
@@ -13,4 +14,14 @@
     border: 1px solid #021c2bf1;
     padding: 5px 5px 5px 20px;
     height: 40px;
+}
+
+.amount {
+    width: 55px;
+}
+
+@media screen and (max-width: 770px) {
+    .form-control{
+        text-align: center;
+    }
 }

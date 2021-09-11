@@ -56,3 +56,9 @@ button {
       transform: scale(1);
     }
   }
+
+  @media screen and (max-width: 770px) {
+    .header-btn {
+      margin: auto;
+  }
+  }

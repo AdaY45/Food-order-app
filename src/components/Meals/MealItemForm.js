@@ -20,6 +20,7 @@ const MealItemForm = (props) => {
       setIsValid(false);
       return;
     }
+    setIsValid(true);
     props.onAddToCart(enteredAmountNumber);
     amountInputRef.current.value = 1;
   };
@@ -27,14 +28,18 @@ const MealItemForm = (props) => {
   return (
     <React.Fragment>
       <form onSubmit={addMealHandler} className={styles["meals-form"]}>
+        {!isValid && (
+          <p class={styles.error}>Please enter a valid amount (1-5).</p>
+        )}
         <Input
+          className="amount"
           ref={amountInputRef}
           label="Amount"
           input={{
             id: "amount_" + props.id,
             type: "number",
-            min: "1",
-            max: "5",
+            // min: "1",
+            // max: "5",
             step: "1",
             defaultValue: "1",
           }}
@@ -42,7 +47,6 @@ const MealItemForm = (props) => {
         <Button type="submit" color="dark">
           +Add
         </Button>
-        {!isValid && <p>Please enter a valid amount (1-5).</p>}
       </form>
     </React.Fragment>
   );

@@ -10,7 +10,6 @@ const HeaderCartButton = () => {
     const [btnIsSet, setBtnIsSet] = useState(false);
 
     const items = useSelector(state => state.cart.items);
-    console.log(items);
 
     const itemsNumberInCart = items.reduce((acc, curr) => {
         return acc + curr.amount;

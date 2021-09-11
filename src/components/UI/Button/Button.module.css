@@ -10,6 +10,7 @@
     margin-left: auto;
     padding: 10px 50px;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .button.light {
@@ -25,4 +26,10 @@
   color: rgb(148, 148, 148);
   border-color: #ccc;
   cursor:not-allowed;
+}
+
+@media screen and (max-width: 770px) {
+    .button.dark {
+        margin: 20px auto;
+    }
 }

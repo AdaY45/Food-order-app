@@ -89,6 +89,7 @@ const CheckoutForm = (props) => {
 
   return (
     <div className={styles.background}>
+      <h2 className={styles["checkout-header"]}>Checkout</h2>
       {isLoading && <Loader />}
       {error && <p className="error-message checkout">{error}</p>}
       <form onSubmit={onCheckoutSubmit} className={styles["checkout-form"]}>

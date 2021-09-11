@@ -13,12 +13,12 @@ const MainHeader = () => {
         </Link>
         <nav className={styles.navbar}>
           <ul>
-            <li>
+            <li className={styles.contact}>
               <NavLink className={styles["nav-btn"]} to="/contacts" activeClassName={styles.active}>
                 Contacts
               </NavLink>
             </li>
-            <li>
+            <li className={styles.about}>
               <NavLink className={styles["nav-btn"]} to="/about-us" activeClassName={styles.active}>
                 About us
               </NavLink>

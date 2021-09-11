@@ -3,6 +3,7 @@
     padding: 20px 20px 40px;
     background-color: rgb(255, 255, 255);
     text-align: center;
+    border-radius: 25px;
   }
   
   .success p {
@@ -22,5 +23,14 @@
     overflow: auto;
     background-color: rgb(0,0,0); /* Fallback color */
     background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  @media screen and (max-width: 1100px) {
+    .success {
+      margin: 250px 20px;
+      padding: 20px 20px 40px;
+      background-color: rgb(255, 255, 255);
+      text-align: center;
+    }
   }
 
