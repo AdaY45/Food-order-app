@@ -7,8 +7,8 @@ The app allows to choose meals from menu and make orders by signing and sending 
 The food ordering app was written with the help of the programming language JavaScript and its framework React.js. Also were used Redux, Redux Toolkit, third party package React Router and CSS.
 
 
-![food-order-app](https://user-images.githubusercontent.com/54071679/132982752-e716e0ec-d2db-4ed9-8e06-069f66d0462f.gif)
+![ezgif-6-f9d633d225f8](https://user-images.githubusercontent.com/54071679/132982883-95040b20-678f-4cd9-8f08-7f85ba2d590b.gif)
 
 # How To Install
-> - npm install
-> - npm start
+<npm install>
+<npm start>
